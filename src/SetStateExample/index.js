@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-
+//useState is the Hook for handling state
 export default function CounterExample(){
 const [count, setCount] = useState(0);
 return(
