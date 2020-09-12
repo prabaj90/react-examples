@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 //useEffect will be hook for componentDidMount,DidUpdate,WillUnmount
 
-export default function CounterWithName(){
+export default function ChangeName(){
     const [name, setName] = useState('FB');
 
     //useEffect() can be called everytime.

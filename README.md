@@ -22,6 +22,10 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### `Added useEffect` 
+ComponentDidMount,DidUpdate,WillUnmount has implemented using useEffect in ChangeName Example.  
+
+
 ### `Added useState` 
-SetState has implemented in useState using Counter Example.  
+SetState has implemented using useState in Counter Example.  
 
