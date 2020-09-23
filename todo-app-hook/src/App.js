@@ -1,25 +1,21 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   const [todos, setTodos] = useState([
     {
-      content: 'Pickup dry cleaning',
+      content: ' dry cleaning',
       isCompleted: true,
     },
     {
       content: 'Get haircut',
       isCompleted: false,
-    },
-    {
-      content: 'Build a todo app in React',
-      isCompleted: false,
     }
   ]);
+  const [errorText, setErrorText] = useState(false);
 
   function handleKeyDown(e, i) {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && (e.target.value).length > 0 && !errorText) {
       createTodoAtIndex(e, i);
     }
     if (e.key === 'Backspace' && todos[i].content === '') {
@@ -29,7 +25,12 @@ function App() {
   }
 
   function createTodoAtIndex(e, i) {
-    const newTodos = [...todos];
+    const tempTodo = [];
+      todos.map((todo,i)=>{
+        if((todo.content).length !== 0){
+          tempTodo.push(todo);
+      }});
+    const newTodos = [...tempTodo];
     newTodos.splice(i + 1, 0, {
       content: '',
       isCompleted: false,
@@ -41,9 +42,15 @@ function App() {
   }
 
   function updateTodoAtIndex(e, i) {
+    if((e.target.value).length <= 20 && (e.target.value).length >=0){
     const newTodos = [...todos];
     newTodos[i].content = e.target.value;
     setTodos(newTodos);
+    }
+    else{
+      setErrorText(true);
+    }
+    
   }
 
   function removeTodoAtIndex(i) {
@@ -62,12 +69,14 @@ function App() {
 
   return (
     <div className="app">
-      <div className="header">
-        <img src={logo} className="logo" alt="logo" />
-      </div>
+    <div className="header">
+    <h2>Tasks</h2>
+    <label>Just to Enter to Add a New ToDo </label>
+    </div>
+    {errorText?(<div className="errorText">Must be 20 Characters or less </div>):''}
       <form className="todo-list">
         <ul>
-          {todos.map((todo, i) => (
+          {todos.map((todo, i) => ((todo.content).length <=20 ? (
             <div className={`todo ${todo.isCompleted && 'todo-is-completed'}`}>
               <div className={'checkbox'} onClick={() => toggleTodoCompleteAtIndex(i)}>
                 {todo.isCompleted && (
@@ -81,7 +90,7 @@ function App() {
                 onChange={e => updateTodoAtIndex(e, i)}
               />
             </div>
-          ))}
+          ):''))}
         </ul>
       </form>
     </div>
