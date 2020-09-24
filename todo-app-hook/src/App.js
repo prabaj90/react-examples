@@ -4,11 +4,11 @@ import './App.css';
 function App() {
   const [todos, setTodos] = useState([
     {
-      content: ' dry cleaning',
+      content: ' Example1 ',
       isCompleted: true,
     },
     {
-      content: 'Get haircut',
+      content: ' Example2 ',
       isCompleted: false,
     }
   ]);
@@ -67,11 +67,23 @@ function App() {
     setTodos(temporaryTodos);
   }
 
+  function clearList(){
+    const initialTodo = [
+      {
+        content: ' Example1 ',
+        isCompleted: false,
+      }
+      
+    ];
+    setTodos(initialTodo);
+  }
+
   return (
     <div className="app">
     <div className="header">
     <h2>Tasks</h2>
-    <label>Just to Enter to Add a New ToDo </label>
+    <label>Just press Enter to Add a New ToDo </label>
+    <button class="clearButton" onClick={() => clearList() }>Clear TodoList </button>
     </div>
     {errorText?(<div className="errorText">Must be 20 Characters or less </div>):''}
       <form className="todo-list">
